@@ -30,8 +30,8 @@ An interactive 3D visualization project built with Next.js and Three.js, featuri
 
 1. Clone the repository:
 ```bash
-git clone <your-repository-url>
-cd 3d-spin-project
+git clone https://github.com/Kitemundo/AI-projects.git
+cd AI-projects/3d-spin-project
 ```
 
 2. Install dependencies:
