@@ -10,8 +10,20 @@ export default function Home() {
   const [selectedShape, setSelectedShape] = useState('cube');
   const [wireframe, setWireframe] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [customColor, setCustomColor] = useState('#4287f5');
 
-  const shapes = ['cube', 'sphere', 'torus', 'torusKnot', 'octahedron'];
+  const shapes = [
+    'cube',
+    'sphere',
+    'torus',
+    'torusKnot',
+    'octahedron',
+    'icosahedron',
+    'dodecahedron',
+    'cone',
+    'cylinder',
+    'capsule'
+  ];
 
   return (
     <main className="min-h-screen flex flex-col">
@@ -45,9 +57,23 @@ export default function Home() {
           />
           Dark Mode
         </label>
+        <div className={`flex items-center gap-2 ${isDarkMode ? 'text-white bg-black' : 'text-black bg-white'} bg-opacity-50 px-4 py-2 rounded-md`}>
+          <label>Color:</label>
+          <input
+            type="color"
+            value={customColor}
+            onChange={(e) => setCustomColor(e.target.value)}
+            className="w-8 h-8 rounded cursor-pointer"
+          />
+        </div>
       </div>
       <div className="flex-1">
-        <Scene selectedShape={selectedShape} wireframe={wireframe} isDarkMode={isDarkMode} />
+        <Scene 
+          selectedShape={selectedShape} 
+          wireframe={wireframe} 
+          isDarkMode={isDarkMode}
+          customColor={customColor}
+        />
       </div>
     </main>
   );

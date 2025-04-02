@@ -4,14 +4,20 @@ An interactive 3D visualization project built with Next.js and Three.js, featuri
 
 ## Features
 
-- Multiple 3D shapes:
-  - Cube
-  - Sphere
-  - Torus
-  - Torus Knot
-  - Octahedron
+- Multiple 3D shapes with unique rotation patterns:
+  - Cube (balanced rotation)
+  - Sphere (smooth, gentle rotation)
+  - Torus (balanced rotation)
+  - Torus Knot (complex 3D rotation)
+  - Octahedron (balanced rotation)
+  - Icosahedron (fast rotation)
+  - Dodecahedron (alternating rotation)
+  - Cone (balanced rotation)
+  - Cylinder (balanced rotation)
+  - Capsule (tumbling rotation)
+- Custom color picker for shapes
 - Wireframe mode toggle
-- Dark/Light mode toggle
+- Dark/Light mode toggle with optimized material properties
 - Auto-rotation
 - Interactive controls:
   - Left mouse button: Rotate

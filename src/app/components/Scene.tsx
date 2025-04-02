@@ -6,9 +6,10 @@ interface SceneProps {
   selectedShape: string;
   wireframe: boolean;
   isDarkMode: boolean;
+  customColor: string;
 }
 
-export default function Scene({ selectedShape, wireframe, isDarkMode }: SceneProps) {
+export default function Scene({ selectedShape, wireframe, isDarkMode, customColor }: SceneProps) {
   return (
     <Canvas
       camera={{ position: [0, 0, 5] }}
@@ -21,6 +22,7 @@ export default function Scene({ selectedShape, wireframe, isDarkMode }: ScenePro
         shapeType={selectedShape} 
         wireframe={wireframe} 
         isDarkMode={isDarkMode}
+        customColor={customColor}
       />
       <OrbitControls enableZoom={true} autoRotate autoRotateSpeed={2} />
     </Canvas>
