@@ -1,12 +1,40 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Mesh } from 'three';
+import * as THREE from 'three';
 
 interface ShapeProps {
   shapeType: string;
   wireframe: boolean;
   isDarkMode: boolean;
   customColor?: string;
+}
+
+// Define a simple shape for ExtrudeGeometry
+const extrudeShape = new THREE.Shape();
+const x = -1, y = -1;
+extrudeShape.moveTo(x + 0.5, y + 0.5);
+extrudeShape.bezierCurveTo(x + 0.5, y + 0.5, x + 0.4, y, x, y);
+extrudeShape.bezierCurveTo(x - 0.6, y, x - 0.6, y + 0.7, x - 0.6, y + 0.7);
+extrudeShape.bezierCurveTo(x - 0.6, y + 1.1, x - 0.3, y + 1.54, x + 0.5, y + 1.9);
+extrudeShape.bezierCurveTo(x + 1.2, y + 1.54, x + 1.6, y + 1.1, x + 1.6, y + 0.7);
+extrudeShape.bezierCurveTo(x + 1.6, y + 0.7, x + 1.6, y, x + 1.0, y);
+extrudeShape.bezierCurveTo(x + 0.7, y, x + 0.5, y + 0.5, x + 0.5, y + 0.5);
+
+const extrudeSettings = {
+  steps: 2,
+  depth: 0.5,
+  bevelEnabled: true,
+  bevelThickness: 0.1,
+  bevelSize: 0.1,
+  bevelOffset: 0,
+  bevelSegments: 1
+};
+
+// Define points for LatheGeometry
+const lathePoints = [];
+for (let i = 0; i < 10; i++) {
+  lathePoints.push(new THREE.Vector2(Math.sin(i * 0.2) * 0.5 + 0.5, (i - 5) * 0.2));
 }
 
 export default function Shape({ shapeType, wireframe, isDarkMode, customColor }: ShapeProps) {
@@ -64,13 +92,29 @@ export default function Shape({ shapeType, wireframe, isDarkMode, customColor }:
       case 'dodecahedron':
         return <dodecahedronGeometry args={[1]} />;
       case 'cone':
-        return <coneGeometry args={[0.5, 2, 32]} />;
+        // Adjusted cone args slightly for better default appearance
+        return <coneGeometry args={[1, 1.5, 32]} />;
       case 'cylinder':
-        return <cylinderGeometry args={[0.5, 0.5, 2, 32]} />;
+        // Adjusted cylinder args slightly
+        return <cylinderGeometry args={[0.7, 0.7, 1.5, 32]} />;
       case 'capsule':
         return <capsuleGeometry args={[0.5, 1, 4, 8]} />;
-      default:
-        return <boxGeometry args={[1, 1, 1]} />;
+      // --- New Shapes ---
+      case 'plane':
+        return <planeGeometry args={[2, 2]} />; // Simple 2x2 plane
+      case 'circle':
+        return <circleGeometry args={[1, 32]} />; // Circle with radius 1
+      case 'ring':
+        return <ringGeometry args={[0.5, 1, 32]} />; // Ring with inner/outer radius
+      case 'tetrahedron':
+        return <tetrahedronGeometry args={[1]} />; // Tetrahedron with radius 1
+      case 'lathe':
+        return <latheGeometry args={[lathePoints]} />; // Use predefined points
+      case 'extrude':
+        return <extrudeGeometry args={[extrudeShape, extrudeSettings]} />; // Use predefined shape/settings
+      // --- End New Shapes ---
+      default: // cube
+        return <boxGeometry args={[1.5, 1.5, 1.5]} />; // Slightly larger box
     }
   };
 

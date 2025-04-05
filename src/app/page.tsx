@@ -22,7 +22,13 @@ export default function Home() {
     'dodecahedron',
     'cone',
     'cylinder',
-    'capsule'
+    'capsule',
+    'plane',
+    'circle',
+    'ring',
+    'tetrahedron',
+    'lathe',
+    'extrude'
   ];
 
   return (

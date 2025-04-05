@@ -16,8 +16,8 @@ export default function Scene({ selectedShape, wireframe, isDarkMode, customColo
       style={{ width: '100%', height: '100vh' }}
     >
       <color attach="background" args={[isDarkMode ? '#1a1a1a' : '#ffffff']} />
-      <ambientLight intensity={isDarkMode ? 0.5 : 0.7} />
-      <pointLight position={[10, 10, 10]} intensity={isDarkMode ? 1 : 1.2} />
+      <ambientLight intensity={isDarkMode ? 1.0 : 1.4} />
+      <pointLight position={[10, 10, 10]} intensity={isDarkMode ? 2.5 : 3.0} />
       <Shape 
         shapeType={selectedShape} 
         wireframe={wireframe} 
